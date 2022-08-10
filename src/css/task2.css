@@ -1,0 +1,31 @@
+.timer {
+    text-align: center;
+    height: 80px;
+    cursor: default;
+    display: flex;
+}
+
+/*       текст     */
+.label {
+    font-size: 16px;
+    font-family: DS-Digital;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+}
+
+/*         цифры таймера         */
+.value {
+    font-size: 18px;
+    font-family: 'Lato Light', sans-serif;
+}
+
+/*      блоки     */
+.field {
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+}
