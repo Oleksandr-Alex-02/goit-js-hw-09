@@ -12,6 +12,7 @@ const rest = {
   seconds: document.querySelector('span[data-seconds]'),
 };
 
+let intervalId = null;
 let selectData = null;
 
 const options = {
@@ -58,10 +59,6 @@ function onButtonClick() {
   }, 1000);
 
   rest.startBtn.setAttribute('disabled', true);
-}
-
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
 function updateClockInfo({ days, hours, minutes, seconds }) {
