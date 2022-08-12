@@ -1,4 +1,4 @@
-import Notify from 'notiflix/build/notiflix-notify-aio';
+import Notiflix from 'notiflix';
 
 const form = document.querySelector('.form');
 
@@ -15,18 +15,18 @@ function createPromise(position, delay) {
   });
 }
 
-position(1000, 1000, 5);
-
-function position(delay, step, amount) {
+function start(delay, step, amount) {
+  let position = 0;
   for (let i = 0; i < amount; i += 1) {
     position += 1;
     createPromise(position, delay)
       .then(resolve => {
-        console.log(resolve);
+        Notiflix.Notify.success(resolve);
       })
       .catch(reject => {
-        console.log(reject);
+        Notiflix.Notify.failure(reject);
       });
+    delay = Number(delay) + Number(step);
   }
 }
 
@@ -37,5 +37,5 @@ function submitBtn(e) {
   const delay = form.delay.value;
   const step = form.step.value;
   const amount = form.amount.value;
-  position(delay, step, amount);
+  start(delay, step, amount);
 }

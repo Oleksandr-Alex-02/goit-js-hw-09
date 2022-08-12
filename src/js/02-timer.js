@@ -1,7 +1,7 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import 'flatpickr/dist/themes/dark.css';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import Notiflix from 'notiflix';
 
 const rest = {
   inputPole: document.querySelector('#datetime-picker'),
@@ -32,7 +32,7 @@ const options = {
     selectData = selectedDates[0].getTime();
     //  провірка дата і disabled
     if (selectData < new Date()) {
-      Notify.failure('Please choose a date in the future');
+      Notiflix.Notify.failure('Please choose a date in the future');
       rest.startBtn.setAttribute('disabled', true);
       return;
     }
@@ -58,6 +58,10 @@ function onButtonClick() {
   }, 1000);
 
   rest.startBtn.setAttribute('disabled', true);
+}
+
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
 function updateClockInfo({ days, hours, minutes, seconds }) {
