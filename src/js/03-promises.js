@@ -1,32 +1,32 @@
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
-// function createPromise(position, delay) {
-//   const shouldResolve = Math.random() > 0.3;
-//   if (shouldResolve) {
-//     // Fulfill
-//   } else {
-//     // Reject
-//   }
-// }
+import Notify from 'notiflix/build/notiflix-notify-aio';
 
 const rest = {
   form: document.querySelector('.form'),
   button: document.querySelector('button'),
-  // form: document.querySelector('.'),
-  // form: document.querySelector('.'),
-  // form: document.querySelector('.'),
 };
 
-rest.button.addEventListener('sabmit', sabmit);
-
-function sabmit() {
-  e.preventDefault();
-  if (0) {
-    Notify.failure('Please choose a date in the future');
-  }
+function createPromise(position, delay) {
+  return new Promise((resolve, reject) => {
+    const shouldResolve = Math.random() > 0.3;
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve(`✅ Fulfilled promise ${position} in ${delay}ms`);
+      } else {
+        reject(`❌ Rejected promise ${position} in ${delay}ms`);
+      }
+    }, delay);
+  });
 }
 
-console.log(rest.button);
-console.log(rest.form.delay);
-console.log(rest.form.step);
-console.log(rest.form.amount);
+function position(delay, step, amount) {
+  for (let i = 0; i < amount; i += 1) {
+    position += 1;
+    createPromise(position, delay)
+      .then(resolve => {
+        console.log(resolve);
+      })
+      .catch(reject => {
+        console.log(reject);
+      });
+  }
+}
