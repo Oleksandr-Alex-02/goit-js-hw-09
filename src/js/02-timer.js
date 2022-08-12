@@ -13,7 +13,7 @@ const rest = {
 };
 
 let intervalId = null;
-let selectData = null;
+let getTimeData = null;
 
 const options = {
   enableTime: true,
@@ -30,9 +30,9 @@ const options = {
   },
   // достаєм дату
   onClose(selectedDates) {
-    selectData = selectedDates[0].getTime();
+    getTimeData = selectedDates[0].getTime();
     //  провірка дата і disabled
-    if (selectData < new Date()) {
+    if (getTimeData < new Date()) {
       Notiflix.Notify.failure('Please choose a date in the future');
       rest.startBtn.setAttribute('disabled', true);
       return;
@@ -43,12 +43,12 @@ const options = {
 
 const dataInput = flatpickr(rest.inputPole, options);
 
-rest.startBtn.addEventListener('click', onButtonClick);
+rest.startBtn.addEventListener('click', startButton);
 rest.startBtn.setAttribute('disabled', true);
 
-function onButtonClick() {
+function startButton() {
   intervalId = setInterval(() => {
-    const deltaTime = selectData - new Date().getTime();
+    const deltaTime = getTimeData - new Date().getTime();
 
     if (deltaTime <= 0) {
       clearInterval(intervalId);
