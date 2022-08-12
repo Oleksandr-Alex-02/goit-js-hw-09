@@ -13,13 +13,13 @@ const rest = {
 };
 
 let selectData = null;
-let intervalId = null;
 
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
+  // зброс лічильника і остановка таймера
   onOpen() {
     clearInterval(intervalId);
     rest.days.textContent = '00';
@@ -27,9 +27,10 @@ const options = {
     rest.minutes.textContent = '00';
     rest.seconds.textContent = '00';
   },
+  // достаєм дату
   onClose(selectedDates) {
     selectData = selectedDates[0].getTime();
-
+    //  провірка дата і disabled
     if (selectData < new Date()) {
       Notify.failure('Please choose a date in the future');
       rest.startBtn.setAttribute('disabled', true);
@@ -55,6 +56,7 @@ function onButtonClick() {
     const time = convertMs(deltaTime);
     updateClockInfo(time);
   }, 1000);
+
   rest.startBtn.setAttribute('disabled', true);
 }
 
