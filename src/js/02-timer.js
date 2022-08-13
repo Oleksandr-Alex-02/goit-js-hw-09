@@ -12,8 +12,8 @@ const rest = {
   seconds: document.querySelector('span[data-seconds]'),
 };
 
-let intervalId = null;
-let getTimeData = null;
+let interval = null;
+let timeData = null;
 
 const options = {
   enableTime: true,
@@ -22,7 +22,7 @@ const options = {
   minuteIncrement: 1,
   // зброс лічильника і остановка таймера
   onOpen() {
-    clearInterval(intervalId);
+    clearInterval(interval);
     rest.days.textContent = '00';
     rest.hours.textContent = '00';
     rest.minutes.textContent = '00';
@@ -30,9 +30,9 @@ const options = {
   },
   // достаєм дату
   onClose(selectedDates) {
-    getTimeData = selectedDates[0].getTime();
+    timeData = selectedDates[0].getTime();
     //  провірка дата і disabled
-    if (getTimeData < new Date()) {
+    if (timeData < new Date()) {
       Notiflix.Notify.failure('Please choose a date in the future');
       rest.startBtn.setAttribute('disabled', true);
       return;
@@ -47,11 +47,11 @@ rest.startBtn.addEventListener('click', startButton);
 rest.startBtn.setAttribute('disabled', true);
 
 function startButton() {
-  intervalId = setInterval(() => {
+  interval = setInterval(() => {
     const deltaTime = getTimeData - new Date().getTime();
 
     if (deltaTime <= 0) {
-      clearInterval(intervalId);
+      clearInterval(interval);
       return;
     }
     const time = convertMs(deltaTime);
