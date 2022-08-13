@@ -1,5 +1,14 @@
 import Notiflix from 'notiflix';
 
+Notiflix.Notify.init({
+  width: '300px',
+  position: 'right-top',
+  distance: '10px',
+  opacity: 1,
+  borderRadius: '50px',
+  timeout: 5000,
+});
+
 const form = document.querySelector('.form');
 
 function createPromise(position, delay) {

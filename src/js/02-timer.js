@@ -3,6 +3,14 @@ import 'flatpickr/dist/flatpickr.min.css';
 import 'flatpickr/dist/themes/dark.css';
 import Notiflix from 'notiflix';
 
+Notiflix.Notify.init({
+  width: '300px',
+  position: 'right-top',
+  distance: '10px',
+  opacity: 1,
+  borderRadius: '50px',
+});
+
 const rest = {
   inputPole: document.querySelector('#datetime-picker'),
   startBtn: document.querySelector('button[data-start]'),
