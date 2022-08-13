@@ -20,7 +20,7 @@ const rest = {
   seconds: document.querySelector('span[data-seconds]'),
 };
 
-let interval = null;
+let timer = null;
 let timeData = null;
 
 const options = {
@@ -30,7 +30,7 @@ const options = {
   minuteIncrement: 1,
   // зброс лічильника і остановка таймера
   onOpen() {
-    clearInterval(interval);
+    clearInterval(timer);
     rest.days.textContent = '00';
     rest.hours.textContent = '00';
     rest.minutes.textContent = '00';
@@ -55,11 +55,11 @@ rest.startBtn.addEventListener('click', startButton);
 rest.startBtn.setAttribute('disabled', true);
 
 function startButton() {
-  interval = setInterval(() => {
-    const deltaTime = getTimeData - new Date().getTime();
+  timer = setInterval(() => {
+    const deltaTime = timeData - new Date().getTime();
 
     if (deltaTime <= 0) {
-      clearInterval(interval);
+      clearInterval(timer);
       return;
     }
     const time = convertMs(deltaTime);
